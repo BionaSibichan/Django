@@ -3,5 +3,6 @@ from student import views
 
 app_name="student"
 urlpatterns=[
-    path("",views.allStudents,name="allstud")
+    path("",views.home),
+    path("all-students",views.allStudents,name="allstud")
 ]

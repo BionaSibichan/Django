@@ -7,6 +7,16 @@
 </head>
 <body>
     <h1>W T SM</h1>
+    <section>
+        <h2>Our Course</h2>
+        <div>
+            {% for course in all_courses %}
+            <div>
+                {{course.course_name}}
+            </div>
+            {% endfor %}
+        </div>
+    </section>
     <nav>
         <ul>
             <li><a href="/">Home</a></li>

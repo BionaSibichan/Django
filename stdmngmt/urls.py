@@ -19,8 +19,7 @@ from django.urls import path,include
 from django.http import HttpResponse
 from django.shortcuts import render
 
-def home(request):
-    return render(request,"index.html")
+
 
 
 def testResponse(request):
@@ -29,7 +28,6 @@ def testResponse(request):
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',home),
     path("cred/",include("credentials.urls")),
-    path("stud/",include ("student.urls"))
+    path("",include ("student.urls"))
 ]
