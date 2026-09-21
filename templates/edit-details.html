@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Student Details</title>
+</head>
+
+<body>
+
+    <h1>Edit Student Details</h1>
+
+    <form method="post" action="{% url 'student:edit_details' student.id %}">
+        {% csrf_token %}
+
+        <label>Student Name:</label>
+        <input type="text" name="student_name" value="{{ student.std_name }}">
+        <br><br>
+
+        <label>Date of Birth:</label>
+        <input type="date" name="dob" value="{{ student.dob|date:'Y-m-d' }}">
+        <br><br>
+
+        <label>Phone:</label>
+        <input type="tel" name="phone" value="{{ student.phone }}">
+        <br><br>
+
+        <label>Address:</label>
+        <textarea name="address" rows="4" cols="30">{{ student.address }}</textarea>
+        <br><br>
+
+        <label>Course:</label>
+        <select name="course">
+
+            {% for course in all_courses %}
+
+                <option value="{{ course.id }}"
+                    {% if student.course.id == course.id %}
+                        selected
+                    {% endif %}>
+                    {{ course.course_name }}
+                </option>
+
+            {% endfor %}
+
+        </select>
+        <br><br>
+
+        <input type="submit" value="Update">
+
+    </form>
+
+</body>
+</html>
+

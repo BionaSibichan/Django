@@ -6,12 +6,15 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>All Students hahaha</h1>
-    <ul>
-        {% for std in stdlist %}
-          <li>{{std}}</li>
-        {% endfor %}
+    <h1>All Students</h1>
+    <h2>{{my_course}}</h2>
 
-    </ul>
+    <div>
+        {% for student in stdlist %}
+            <li>
+                <a href="/student-details/{{student.id}}">{{student.std_name}}</a>
+            </li>
+        {% endfor %}
+    </div>
 </body>
 </html>

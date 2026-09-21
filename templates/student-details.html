@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Detailst</title>
+</head>
+<body>
+    
+    <h1>Student Details</h1>
+    <div>
+        <p><strong>Student Name:</strong> {{ student.std_name }}</p>
+        <p><strong>Date of Birth:</strong> {{ student.dob }}</p>
+        <p><strong>Phone:</strong> {{ student.phone }}</p>
+        <p><strong>Address:</strong> {{ student.address }}</p>
+        <p><strong>Course:</strong> {{ student.course.course_name }}</p>
+        <br>
+
+        <a href="{% url 'student:edit_details' student.id %}">
+            <button type="button">Edit</button>
+        </a>
+    </div>
+</body>
+</html>
