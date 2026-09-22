@@ -18,7 +18,8 @@ from django.contrib import admin
 from django.urls import path,include
 from django.http import HttpResponse
 from django.shortcuts import render
-
+from django.conf.urls.static import static
+from django.conf import settings
 
 
 
@@ -31,3 +32,5 @@ urlpatterns = [
     path("cred/",include("credentials.urls")),
     path("",include ("student.urls"))
 ]
+
+urlpatterns+=static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

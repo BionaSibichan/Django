@@ -27,8 +27,9 @@ def addstudent(request):
         dob=request.POST['dob']
         course=request.POST['course']
         course_instance=Course.objects.get(id=course)
-        Students(std_name=student_value,phone=phone,address=address,dob=dob,course=course_instance).save()
-        return redirect("student:all_stud")
+        image=request.FILES['profile_pic']
+        Students(std_name=student_value,phone=phone,address=address,dob=dob,course=course_instance,profile_pic=image).save()
+        return redirect("student:allstud")
     return render(request,"add-students.html",{"all_courses":courses})
 
 def studentDetails(request,std_id):
@@ -47,6 +48,8 @@ def editDetails(request, std_id):
         address = request.POST['address']
         dob = request.POST['dob']
         course = request.POST['course']
+        
+        image=request.FILES.get('profile_pic',std.profile_pic)
 
         course_instance = Course.objects.get(id=course)
 
@@ -55,6 +58,7 @@ def editDetails(request, std_id):
         std.address = address
         std.dob = dob
         std.course = course_instance
+        std.profile_pic=image
         std.save()
         return redirect("student:allstud")
 

@@ -8,7 +8,7 @@
 
     <h1>Edit Student Details</h1>
 
-    <form method="post" action="{% url 'student:edit_details' student.id %}">
+    <form method="post" action="{% url 'student:edit_details' student.id %}"enctype="multipart/form-data">
         {% csrf_token %}
 
         <label>Student Name:</label>
@@ -43,6 +43,14 @@
 
         </select>
         <br><br>
+
+         <div>
+            <label> Profile Picture</label>
+         <input type="file" name="profile_pic">
+         </div>
+         <div>
+         <img src="{{student.profile_pic.url}}" style="width: 300px;height: 315px;">
+         </div>
 
         <input type="submit" value="Update">
 

@@ -13,6 +13,7 @@ class Students(models.Model):
     dob=models.DateField(max_length=30)
     address=models.CharField(max_length=30)
     course=models.ForeignKey(Course,on_delete=models.CASCADE)
+    profile_pic=models.ImageField(upload_to="students_img",default='students_img/car.jpg')
 
     def __str__(self):
             return self.std_name

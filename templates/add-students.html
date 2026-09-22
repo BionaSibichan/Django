@@ -9,7 +9,7 @@
 
     <h1>Student Registration Form</h1>
 
-    <form method="post" action="{% url 'student:add_student' %}">
+    <form method="post" action="{% url 'student:add_student' %}"enctype="multipart/form-data">
         {% csrf_token %}
 
         <label>Student Name:</label>
@@ -33,11 +33,14 @@
             {% for course in all_courses %}
                 <option value="{{ course.id }}">{{ course.course_name }}</option>
             {% endfor %}
-            
+          
             
         </select>
         <br><br>
-
+        <div>
+            <label> Profile Picture</label>
+            <input type="file" name="profile_pic">
+        </div>
         <input type="submit" value="Submit">
 
     </form>
