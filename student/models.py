@@ -17,3 +17,14 @@ class Students(models.Model):
 
     def __str__(self):
             return self.std_name
+
+class ClassTrainer(models.Model):
+    trainer_name=models.CharField(max_length=100)
+    phone=models.CharField(max_length=15)
+    email=models.EmailField()
+    address=models.TextField()
+    course=models.ForeignKey(Course,on_delete=models.CASCADE)
+    profile_pic=models.ImageField(upload_to="trainers_img",default='trainers_img/car.jpg')
+
+    def __str__(self):
+        return self.trainer_name

@@ -1,50 +1,21 @@
-
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Student Registration Form</title>
-</head>
-
-<body>
-
-    <h1>Student Registration Form</h1>
-
-    <form method="post" action="{% url 'student:add_student' %}"enctype="multipart/form-data">
+{% extends "base.html" %}
+{% block title %}Add Student | Student Management{% endblock %}
+{% block content %}
+<section class="form-card wide-card">
+    <p class="eyebrow">STUDENT MANAGEMENT</p>
+    <h1>Student Registration</h1>
+    <p class="form-intro">Enter the student's details below.</p>
+    <form method="post" action="{% url 'student:add_student' %}" enctype="multipart/form-data">
         {% csrf_token %}
-
-        <label>Student Name:</label>
-        <input type="text" name="student_name">
-        <br><br>
-
-        <label>Date of Birth:</label>
-        <input type="date" name="dob">
-        <br><br>
-
-        <label>Phone:</label>
-        <input type="tel" name="phone">
-        <br><br>
-
-        <label>Address:</label>
-        <textarea name="address" rows="4" cols="30"></textarea>
-        <br><br>
-
-        <label>Course:</label>
-        <select name="course">
-            {% for course in all_courses %}
-                <option value="{{ course.id }}">{{ course.course_name }}</option>
-            {% endfor %}
-          
-            
-        </select>
-        <br><br>
-        <div>
-            <label> Profile Picture</label>
-            <input type="file" name="profile_pic">
+        <div class="form-grid">
+            <div><label for="student_name">Student name</label><input id="student_name" type="text" name="student_name" required></div>
+            <div><label for="dob">Date of birth</label><input id="dob" type="date" name="dob" required></div>
+            <div><label for="phone">Phone</label><input id="phone" type="tel" name="phone" required></div>
+            <div><label for="course">Course</label><select id="course" name="course" required><option value="">Select a course</option>{% for course in all_courses %}<option value="{{ course.id }}">{{ course.course_name }}</option>{% endfor %}</select></div>
+            <div class="full-width"><label for="address">Address</label><textarea id="address" name="address" rows="3" required></textarea></div>
+            <div class="full-width"><label for="profile_pic">Profile picture</label><input id="profile_pic" type="file" name="profile_pic" accept="image/*"></div>
         </div>
-        <input type="submit" value="Submit">
-
+        <div class="form-actions"><button type="submit">Save Student</button><a class="btn btn-secondary" href="{% url 'student:allstud' %}">Cancel</a></div>
     </form>
-
-</body>
-</html>
-
+</section>
+{% endblock %}

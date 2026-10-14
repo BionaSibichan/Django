@@ -1,16 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Login</h1>
-    <label for="username">Username:</label>
-    <input type="text" id="username" name="username" required>
-    <label for="password">Password:</label> 
-    <input type="password" id="password" name="password" required>
-    <button type="submit">Login</button>
-</body>
-</html>
+{% extends "base.html" %}
+{% block title %}Sign In | Student Management{% endblock %}
+{% block content %}
+<section class="auth-container">
+    <p class="eyebrow">WELCOME BACK</p><h1>Sign In</h1><p class="form-intro">Sign in to your account.</p>
+    <form method="post" action="{% url 'credentials:Sign_In' %}">
+        {% csrf_token %}
+        <label for="email">Email</label><input id="email" type="email" name="email" autocomplete="email" required>
+        <label for="password">Password</label><input id="password" type="password" name="password" autocomplete="current-password" required>
+        <button type="submit">Sign In</button>
+    </form>
+    <p class="auth-switch">Don't have an account? <a href="{% url 'credentials:Sign_Up' %}">Create one</a></p>
+</section>
+{% endblock %}

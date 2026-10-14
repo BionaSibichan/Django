@@ -1,61 +1,19 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Edit Student Details</title>
-</head>
-
-<body>
-
-    <h1>Edit Student Details</h1>
-
-    <form method="post" action="{% url 'student:edit_details' student.id %}"enctype="multipart/form-data">
+{% extends "base.html" %}
+{% block title %}Edit Student | Student Management{% endblock %}
+{% block content %}
+<section class="form-card wide-card">
+    <p class="eyebrow">STUDENT MANAGEMENT</p><h1>Edit Student Details</h1>
+    <form method="post" action="{% url 'student:edit_details' student.id %}" enctype="multipart/form-data">
         {% csrf_token %}
-
-        <label>Student Name:</label>
-        <input type="text" name="student_name" value="{{ student.std_name }}">
-        <br><br>
-
-        <label>Date of Birth:</label>
-        <input type="date" name="dob" value="{{ student.dob|date:'Y-m-d' }}">
-        <br><br>
-
-        <label>Phone:</label>
-        <input type="tel" name="phone" value="{{ student.phone }}">
-        <br><br>
-
-        <label>Address:</label>
-        <textarea name="address" rows="4" cols="30">{{ student.address }}</textarea>
-        <br><br>
-
-        <label>Course:</label>
-        <select name="course">
-
-            {% for course in all_courses %}
-
-                <option value="{{ course.id }}"
-                    {% if student.course.id == course.id %}
-                        selected
-                    {% endif %}>
-                    {{ course.course_name }}
-                </option>
-
-            {% endfor %}
-
-        </select>
-        <br><br>
-
-         <div>
-            <label> Profile Picture</label>
-         <input type="file" name="profile_pic">
-         </div>
-         <div>
-         <img src="{{student.profile_pic.url}}" style="width: 300px;height: 315px;">
-         </div>
-
-        <input type="submit" value="Update">
-
+        <div class="form-grid">
+            <div><label for="student_name">Student name</label><input id="student_name" type="text" name="student_name" value="{{ student.std_name }}" required></div>
+            <div><label for="dob">Date of birth</label><input id="dob" type="date" name="dob" value="{{ student.dob|date:'Y-m-d' }}" required></div>
+            <div><label for="phone">Phone</label><input id="phone" type="tel" name="phone" value="{{ student.phone }}" required></div>
+            <div><label for="course">Course</label><select id="course" name="course" required>{% for course in all_courses %}<option value="{{ course.id }}" {% if student.course.id == course.id %}selected{% endif %}>{{ course.course_name }}</option>{% endfor %}</select></div>
+            <div class="full-width"><label for="address">Address</label><textarea id="address" name="address" rows="3" required>{{ student.address }}</textarea></div>
+            <div class="full-width"><label for="profile_pic">Change profile picture (optional)</label><input id="profile_pic" type="file" name="profile_pic" accept="image/*">{% if student.profile_pic %}<img class="preview-image" src="{{ student.profile_pic.url }}" alt="Current profile picture">{% endif %}</div>
+        </div>
+        <div class="form-actions"><button type="submit">Update Student</button><a class="btn btn-secondary" href="{% url 'student:student_details' student.id %}">Cancel</a></div>
     </form>
-
-</body>
-</html>
-
+</section>
+{% endblock %}

@@ -1,29 +1,30 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>W T SM</h1>
-    <section>
-        <h2>Our Course</h2>
-        <div>
-            {% for course in all_courses %}
-            <div>
-                {{course.course_name}}
-            </div>
-            {% endfor %}
-        </div>
-    </section>
-    <nav>
-        <ul>
-            <li><a href="/">Home</a></li>
-            <li><a href="{% url 'student:allstud'%}">All Students</a></li>
-            <li><a href="{% url 'Sign_Up'%}">SignUp</a></li>
-            <li><a href="{% url 'Sign_In'%}">SignIn</a></li>
-        </ul>
-    </nav>
-</body>
-</html>
+{% extends "base.html" %}
+{% block title %}Home | Student Management{% endblock %}
+{% block content %}
+<section class="hero">
+    <span class="eyebrow">WELCOME</span>
+    <h1>Student Management System</h1>
+    <p>Manage students, courses and trainers in one place.</p>
+    <div class="hero-actions">
+        <a class="btn" href="{% url 'student:add_student' %}">Add Student</a>
+        <a class="btn btn-light" href="{% url 'student:allstud' %}">View Students</a>
+    </div>
+</section>
+<section class="section">
+    <div class="section-heading">
+        <div><p class="eyebrow">LEARNING PROGRAMS</p><h2>Our Courses</h2></div>
+        <a class="text-link" href="{% url 'student:add_course' %}">+ Add course</a>
+    </div>
+    <div class="card-grid">
+        {% for course in all_courses %}
+            <article class="content-card course-card">
+                <div class="course-icon">✦</div>
+                <h3>{{ course.course_name }}</h3>
+                <p>Available course</p>
+            </article>
+        {% empty %}
+            <div class="empty-state"><h3>No courses yet</h3><p>Add your first course to see it here.</p><a class="btn" href="{% url 'student:add_course' %}">Add Course</a></div>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}

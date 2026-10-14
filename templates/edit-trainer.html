@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}Edit Trainer | Student Management{% endblock %}
+{% block content %}
+<section class="form-card">
+    <p class="eyebrow">TRAINER MANAGEMENT</p><h1>Edit Trainer Details</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <div class="form-actions"><button type="submit">Update Trainer</button><a class="btn btn-secondary" href="{% url 'student:trainer_list' %}">Cancel</a></div>
+    </form>
+</section>
+{% endblock %}

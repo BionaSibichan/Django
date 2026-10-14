@@ -1,5 +1,7 @@
 from django.shortcuts import render,redirect
-from student.models import Course,Students
+from student.models import ClassTrainer, Course,Students
+from django.contrib import messages
+from django.views.generic import ListView,CreateView,UpdateView,DeleteView
 
 def allStudents(request):
     course="Python Django"
@@ -29,6 +31,7 @@ def addstudent(request):
         course_instance=Course.objects.get(id=course)
         image=request.FILES['profile_pic']
         Students(std_name=student_value,phone=phone,address=address,dob=dob,course=course_instance,profile_pic=image).save()
+        messages.info(request,"New Student added successfully")
         return redirect("student:allstud")
     return render(request,"add-students.html",{"all_courses":courses})
 
@@ -66,3 +69,30 @@ def editDetails(request, std_id):
         "student": std,
         "all_courses": courses
     })
+
+class AddTrainerView(CreateView):
+    template_name = 'add-trainer.html'
+    model = ClassTrainer
+    fields = '__all__'
+    success_url = '/'
+
+class TrainerList(ListView):
+    model = ClassTrainer
+    template_name = 'trainer_list.html'
+    context_object_name = 'trainers'
+
+
+class EditTrainerView(UpdateView):
+    model = ClassTrainer
+    template_name = 'edit-trainer.html'
+    fields = '__all__'
+    pk_url_kwarg = 'trainer_id'
+    success_url = '/trainer-list/'
+
+
+
+class DeleteTrainerView(DeleteView):
+    model = ClassTrainer
+    template_name = 'delete-trainer.html'
+    success_url = '/trainer-list/'
+

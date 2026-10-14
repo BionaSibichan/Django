@@ -1,19 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>All Students</h1>
-
-    <div>
-        {% for student in stdlist %}
-            <li>
-                <a href="/student-details/{{student.id}}">{{student.std_name}}</a>
-            </li>
-        {% endfor %}
-    </div>
-</body>
-</html>
+{% extends "base.html" %}
+{% block title %}All Students | Student Management{% endblock %}
+{% block content %}
+<div class="section-heading">
+    <div><p class="eyebrow">DIRECTORY</p><h1>All Students</h1><p class="form-intro">Browse and open student records.</p></div>
+    <a class="btn" href="{% url 'student:add_student' %}">+ Add Student</a>
+</div>
+{% if my_courses %}<div class="chips">{% for course in my_courses %}<span class="chip">{{ course.course_name }}</span>{% endfor %}</div>{% endif %}
+<div class="table-container">
+<table>
+    <thead><tr><th>Student name</th><th>Details</th></tr></thead>
+    <tbody>
+    {% for student in stdlist %}
+        <tr><td>{{ student.std_name }}</td><td><a class="table-link" href="{% url 'student:student_details' student.id %}">View details →</a></td></tr>
+    {% empty %}
+        <tr><td colspan="2" class="empty-cell">No students have been added yet.</td></tr>
+    {% endfor %}
+    </tbody>
+</table>
+</div>
+{% endblock %}

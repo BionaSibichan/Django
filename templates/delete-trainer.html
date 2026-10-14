@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}Delete Trainer | Student Management{% endblock %}
+{% block content %}
+<section class="delete-card">
+    <div class="delete-icon">!</div>
+    <p class="eyebrow">CONFIRM ACTION</p>
+    <h1>Delete Trainer?</h1>
+    <p>Are you sure you want to delete <strong>{{ object.trainer_name }}</strong>? This action cannot be undone.</p>
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-actions centered"><button class="btn-danger" type="submit">Yes, Delete Trainer</button><a class="btn btn-secondary" href="{% url 'student:trainer_list' %}">Cancel</a></div>
+    </form>
+</section>
+{% endblock %}

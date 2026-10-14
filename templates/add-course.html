@@ -1,19 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+{% extends "base.html" %}
+{% block title %}Add Course | Student Management{% endblock %}
+{% block content %}
+<section class="form-card">
+    <p class="eyebrow">COURSE MANAGEMENT</p>
     <h1>Add Course</h1>
-    <div>
-        <form method="post" action="{% url 'student:add_course' %}">
-            {% csrf_token %}
-            <label> Enter course name</label>
-            <input type="text" name="course">
-            <input type="submit" value="Add course">
-        </form>
-    </div>
-</body>
-</html>
+    <p class="form-intro">Create a course to make it available during student registration.</p>
+    {% if my_courses %}
+    <div class="chips">{% for course in my_courses %}<span class="chip">{{ course.course_name }}</span>{% endfor %}</div>
+    {% endif %}
+    <form method="post" action="{% url 'student:add_course' %}">
+        {% csrf_token %}
+        <label for="course">Course name</label>
+        <input id="course" type="text" name="course" placeholder="e.g. Python" required>
+        <button type="submit">Add Course</button>
+    </form>
+</section>
+{% endblock %}

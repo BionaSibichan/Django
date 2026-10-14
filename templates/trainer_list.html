@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}Trainer List | Student Management{% endblock %}
+{% block content %}
+<div class="section-heading">
+    <div><p class="eyebrow">TRAINER DIRECTORY</p><h1>Our Trainers</h1><p class="form-intro">View and manage trainer records.</p></div>
+    <a class="btn" href="{% url 'student:add_trainer' %}">+ Add Trainer</a>
+</div>
+<div class="card-grid">
+    {% for trainer in trainers %}
+    <article class="content-card trainer-card">
+        {% if trainer.profile_pic %}<img class="trainer-image" src="{{ trainer.profile_pic.url }}" alt="Profile picture of {{ trainer.trainer_name }}">{% else %}<div class="avatar-placeholder">{{ trainer.trainer_name|first|upper }}</div>{% endif %}
+        <h2>{{ trainer.trainer_name }}</h2>
+        <p><span class="field-label">Email</span>{{ trainer.email|default:"Not provided" }}</p>
+        <p><span class="field-label">Phone</span>{{ trainer.phone|default:"Not provided" }}</p>
+        <p><span class="field-label">Address</span>{{ trainer.address|default:"Not provided" }}</p>
+        <p><span class="field-label">Course</span>{{ trainer.course|default:"Not specified" }}</p>
+        <div class="card-actions">
+            <a class="btn" href="{% url 'student:edit_trainer' trainer.pk %}">Edit</a>
+            <a class="btn btn-danger" href="{% url 'student:delete_trainer' trainer.pk %}">Delete</a>
+        </div>
+    </article>
+    {% empty %}
+    <div class="empty-state"><h3>No trainers added yet</h3><p>Add a trainer to see their details here.</p><a class="btn" href="{% url 'student:add_trainer' %}">Add Trainer</a></div>
+    {% endfor %}
+</div>
+{% endblock %}
