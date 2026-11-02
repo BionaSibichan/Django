@@ -1,0 +1,353 @@
+/* =========================
+   General Page
+   ========================= */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f4f6f8;
+    color: #222;
+}
+
+
+/* =========================
+   Home Page
+   ========================= */
+
+.page-shell {
+    width: 90%;
+    max-width: 900px;
+    margin: 50px auto;
+}
+
+.topbar {
+    background: #ffffff;
+    padding: 30px 35px;
+    border-radius: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+    margin-bottom: 25px;
+}
+
+.eyebrow {
+    margin: 0 0 5px;
+    font-size: 13px;
+    color: #777;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+}
+
+.topbar h1 {
+    margin: 0;
+    font-size: 32px;
+}
+
+
+/* =========================
+   Buttons
+   ========================= */
+
+.primary-btn,
+.secondary-btn,
+.danger-btn {
+    display: inline-block;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    border-radius: 8px;
+    padding: 10px 16px;
+    font-size: 14px;
+    transition: 0.2s;
+}
+
+.primary-btn {
+    background: #c5c2c2;
+    color: rgb(62, 14, 14);
+}
+
+.primary-btn:hover {
+    background: #e9cece;
+}
+
+.secondary-btn {
+    background: #eeeeee;
+    color: #222;
+}
+
+.secondary-btn:hover {
+    background: #dddddd;
+}
+
+.danger-btn {
+    background: #e74c3c;
+    color: white;
+}
+
+.danger-btn:hover {
+    background: #c0392b;
+}
+
+
+/* =========================
+   Task Card
+   ========================= */
+
+.card {
+    background: #ffffff;
+    padding: 30px 35px;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+}
+
+.section-heading h2 {
+    margin-top: 0;
+    margin-bottom: 25px;
+    font-size: 24px;
+}
+
+
+/* =========================
+   Task List
+   ========================= */
+
+.task-list {
+    margin: 0;
+    padding-left: 30px;
+}
+
+.task-item {
+    padding: 16px 10px;
+    border-bottom: 1px solid #eeeeee;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+.task-item:last-child {
+    border-bottom: none;
+}
+
+.task-main {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.task-name {
+    font-size: 16px;
+}
+
+.task-actions {
+    display: flex;
+    gap: 8px;
+}
+
+
+/* =========================
+   Completed Task
+   ========================= */
+
+.task-item.completed .task-name {
+    text-decoration: line-through;
+    color: #888;
+}
+
+.status-badge {
+    background: #e8f7ed;
+    color: #218739;
+    padding: 5px 9px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.empty-state {
+    color: #777;
+    text-align: center;
+    padding: 30px;
+}
+
+
+/* =========================
+   Add Task & Edit Task Pages
+   ========================= */
+
+body > form,
+body > h1 + form {
+    width: 90%;
+    max-width: 500px;
+    margin: 80px auto;
+    background: white;
+    padding: 35px;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+}
+
+
+/* Edit Task Heading */
+
+body > h1 {
+    width: 90%;
+    max-width: 500px;
+    margin: 60px auto -60px;
+}
+
+
+/* Labels */
+
+form label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #333;
+}
+
+
+/* Text Input */
+
+form input[type="text"] {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 7px;
+    font-size: 15px;
+    outline: none;
+}
+
+form input[type="text"]:focus {
+    border-color: #555;
+}
+
+
+/* Checkbox */
+
+form input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    margin-right: 6px;
+}
+
+
+/* Completed label */
+
+form input[type="checkbox"] + label {
+    display: inline;
+    font-weight: normal;
+}
+
+
+/* Submit Button */
+
+form input[type="submit"] {
+    background: #222;
+    color: white;
+    border: none;
+    padding: 11px 22px;
+    border-radius: 7px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+form input[type="submit"]:hover {
+    background: #444;
+}
+
+
+/* Task name shown on Edit page */
+
+form p {
+    background: #f4f6f8;
+    padding: 12px;
+    border-radius: 7px;
+    margin-bottom: 20px;
+}
+
+
+/* =========================
+   Mobile Responsive
+   ========================= */
+
+@media (max-width: 600px) {
+
+    .page-shell {
+        width: 94%;
+        margin: 25px auto;
+    }
+
+    .topbar {
+        padding: 22px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+    }
+
+    .topbar h1 {
+        font-size: 27px;
+    }
+
+    .card {
+        padding: 22px;
+    }
+
+    .task-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .task-actions {
+        width: 100%;
+    }
+
+    .secondary-btn,
+    .danger-btn {
+        text-align: center;
+    }
+
+    body > form,
+    body > h1 + form {
+        width: 92%;
+    }
+    .task-form {
+    width: 90%;
+    max-width: 500px;
+    margin: 80px auto;
+    background: white;
+    padding: 35px;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+}
+
+.task-form input[type="text"] {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 7px;
+    font-size: 15px;
+    outline: none;
+}
+
+.task-form input[type="text"]:focus {
+    border-color: #555;
+}
+
+.task-form input[type="submit"] {
+    background: #222;
+    color: white;
+    border: none;
+    padding: 11px 22px;
+    border-radius: 7px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.task-form input[type="submit"]:hover {
+    background: #444;
+}
+}

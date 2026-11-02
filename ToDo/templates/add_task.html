@@ -1,0 +1,35 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Task</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+
+<body>
+    <div class="page-shell form-shell">
+        <main class="card form-card">
+            <div class="section-heading">
+                <p class="eyebrow">New Item</p>
+                <h1>Add Task</h1>
+            </div>
+
+            <form class="task-form" method="post" action="{% url 'todo:add_task' %}">
+                {% csrf_token %}
+
+                <div class="input-group">
+                    <label for="task_name">Task Name</label>
+                    <input type="text" id="task_name" name="task_name" placeholder="Enter a task name" required>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="primary-btn">Submit</button>
+                    <a href="{% url 'todo:home' %}" class="secondary-btn">Back</a>
+                </div>
+            </form>
+        </main>
+    </div>
+</body>
+</html>

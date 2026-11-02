@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Task</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+
+<body>
+
+    <h1>Edit Task</h1>
+
+    <form class="task-form" method="post" action="{% url 'todo:edit_task' task.id %}">
+        {% csrf_token %}
+
+        <p>Task Name: {{ task.task_name }}</p>
+        <label for="task_name">Edit Task Name:</label>
+        <input type="text" name="task_name" value="{{ task.task_name }}">
+        <input type="checkbox"
+               name="completed"
+               value="true"
+               {% if task.completed %}checked{% endif %}>
+
+        <label>Completed</label>
+
+        <br><br>
+
+        <input type="submit" value="Update">
+    </form>
+
+</body>
+</html>
